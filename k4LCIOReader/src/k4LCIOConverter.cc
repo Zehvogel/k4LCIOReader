@@ -126,7 +126,9 @@ podio::CollectionBase *k4LCIOConverter::getCollection(const std::string &name, b
         // put result in data holders
         m_name2dest[name] = dest;
 
-        m_type2cols[src->getTypeName()].push_back(std::make_pair(src, dest));
+        if (src->isSubset() == false) {
+            m_type2cols[src->getTypeName()].push_back(std::make_pair(src, dest));
+        }
       }
       else {
         delete dest;
